@@ -16,7 +16,7 @@ auth.set_access_token(AcessToken, AcessTokenSecret)
 api = tweepy.API(auth)
 
 
-search = input(" Enter the hashtag you want to search about: ")
+search = input(" Enter the hashtag u want to search about: ")
 n_search_items = int(input(" Enter the number of tweets to be analyzed: "))
 
 tweets = tweepy.Cursor(api.search, q = search).items(n_search_items)
@@ -24,7 +24,13 @@ tweets = tweepy.Cursor(api.search, q = search).items(n_search_items)
 positive_sentiments = 0
 negative_sentiments = 0
 neutral_sentiments = 0
-polarity = 0
+# polarity = 0
+# analysis = TextBlob("")
+# if analysis.sentiment.polarity < 0.001:
+#     print("Negative")
+# else:
+#     print("Fuck you!!!!")    
+
 
 for tweet in tweets:
     print(tweet.text)
@@ -59,7 +65,9 @@ plt.legend(patches, labels, loc = 'best')
 plt.title("What is the reaction of people on" + search + " by analyzing " + str(n_search_items) + "tweets?")
 plt.axis('equal')
 plt.tight_layout()
-plt.show() 
+plt.show()
+
+
 
     
          
