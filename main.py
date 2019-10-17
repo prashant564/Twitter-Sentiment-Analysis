@@ -1,5 +1,6 @@
 from textblob import TextBlob
 from matplotlib import pyplot as plt
+%matplotlib inline
 import sys
 import tweepy
 
@@ -16,21 +17,14 @@ auth.set_access_token(AcessToken, AcessTokenSecret)
 api = tweepy.API(auth)
 
 
-search = input("Enter the hashtag you want to search for: ")
-n_search_items = int(input("Enter the number of tweets to be analyzed: "))
+search = input(" Enter the hashtag u want to search about: ")
+n_search_items = int(input(" Enter the number of tweets to be analyzed: "))
 
 tweets = tweepy.Cursor(api.search, q = search).items(n_search_items)
 
 positive_sentiments = 0
 negative_sentiments = 0
 neutral_sentiments = 0
-# polarity = 0
-# analysis = TextBlob("")
-# if analysis.sentiment.polarity < 0.001:
-#     print("Negative")
-# else:
-#     print("Dammit!")    
-
 
 for tweet in tweets:
     print(tweet.text)
@@ -55,17 +49,27 @@ polarity = format(polarity,'.2f')
 
 print("What is the reaction of people on " + search + " by analyzing " + str(n_search_items) + "tweets?")
 
-
 print(polarity) 
 labels = ['Positive ['+str(positive)+'%]', 'Negative ['+str(negative)+'%]', 'Neutral ['+str(neutral)+'%]']
 sizes = [positive,negative,neutral]
 colors = ['yellow','red','green']
 patches, texts = plt.pie(sizes, colors=colors, startangle=90)
-
-
-#Plotting through Matplotlib
 plt.legend(patches, labels, loc = 'best')
 plt.title("What is the reaction of people on" + search + " by analyzing " + str(n_search_items) + "tweets?")
 plt.axis('equal')
 plt.tight_layout()
 plt.show()
+
+
+
+    
+         
+
+
+
+
+
+                       
+          
+
+
